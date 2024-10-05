@@ -2,13 +2,17 @@
 plain_text = "Hello World!"
 key = "polke"
 plain_text_length = len(plain_text)
+key_length = len(key)
 
 # ulang key agar panjang key = panjang plain text
-generated_key = key
-while (plain_text_length > len(generated_key)):
-    generated_key += key
-# trim key yang melebihi panjang
-generated_key = generated_key[:len(plain_text)]
+generated_key = []
+key_pointer = 0
+for i in range(plain_text_length):
+    if plain_text[i].isalpha():
+        generated_key.append(key[key_pointer % key_length])
+        key_pointer = (key_pointer + 1) % key_length
+    else:
+        generated_key.append(plain_text[i])
 
 # enkripsi
 cipher_text = ""
